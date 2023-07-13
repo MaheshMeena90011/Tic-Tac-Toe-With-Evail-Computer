@@ -1,8 +1,8 @@
-#include <iostream>
+#include <iostream>// declaration of cin cout object
 #include <cstdlib>
-#include <ctime>
+#include <ctime> 
 #include <conio.h>
-#include <windows.h>
+#include <windows.h>// declaration of setcursorpositon position 
 using namespace std;
 void setcurser(int row, int col);
 class Game
@@ -63,8 +63,7 @@ int Game::play_game_With_SmartComputer()
             }
             if (Drow_game())
             {
-                cout << endl
-                     << endl<< " Draw Game " << endl  << "Press Enter ";
+                cout << endl << endl<< " Draw Game " << endl  << "Press Enter ";
                 return (1);
             }
             turn = 1 - turn;
@@ -92,10 +91,10 @@ int Game::HumanTurn()
 {
     int Marking_place;
 label1:
-    pattern();
+    pattern(); // print pattern 
     cout << endl << endl << "Player 1 ,Enter Marking Place (X):";
     cin.ignore();
-    cin >> Marking_place;
+    cin >> Marking_place;  // Enter the marking palce 
     int i, j, k = 1;
     for (i = 0; i < 5; i++)
     {
@@ -111,20 +110,17 @@ l1:
         goto label1;
     Tic[i][j] = 'X';
     help[i][j] = 1;
-    pattern();
+    pattern();     //   Print the pattern 
     return (0);
 }
 void Game::pattern()
 {
     int i, j;
     system("cls"); // clear the screen
-    cout << endl
-         << endl;
+    cout << endl << endl;
     cout << "############################### Tic Tac Toe ###################################" << endl
          << endl;
-    cout << "1st Player X" << endl
-         << "2nd Player O" << endl
-         << endl;
+    cout << "1st Player X" << endl<< "2nd Player O" << endl<< endl;
     for (i = 0; i < 5; i++)
     {
         cout << "\t|\t |\t  |\t   |\t    |\n";
@@ -140,33 +136,33 @@ void Game::pattern()
     }
     cout << endl
          << endl;
-    setcurser(6, 51);
-    cout << "Enter the Marking Place From Giver Number -> ";
-    setcurser(7, 56);
-    int set = 8;
+    //setcurser(6, 51);
+    cout << "Enter the Marking Place From Giver Number -> "<<endl<<endl;
+    //setcurser(7, 56);
+    //int set = 8;
     int k = 1;
     for (i = 0; i < 5; i++)
     {
-        cout << "\t|\t  |\t    |\t      |\t        |\n";
-        setcurser(set, 55);
-        set += 1;
+        cout << "\t|\t |\t  |\t   |\t    |\n";
+       // setcurser(set, 55);
+        //set += 1;
         for (j = 0; j < 5; j++)
         {
             if (k <= 9)
-                cout << "     " << k << "   |";
+                cout << "    " << k<< "   |";
             else
-                cout << "    " << k << "   |";
+                cout << "   " << k << "   |";
             k += 1;
         }
         cout << endl;
-        setcurser(set, 57);
-        set += 1;
+       // setcurser(set, 57);  // set cursonr position 
+       // set += 1;
         if (i != 4)
-            cout << "_______|_________|_________|_________|_________|" << endl;
+            cout << "________|________|________|________|________|" << endl;
         if (i == 4)
-            cout << "       |         |         |         |         |" << endl;
-        setcurser(set, 57);
-        set += 1;
+            cout << "        |        |        |        |        |" << endl;
+       // setcurser(set, 57);  // setcursor positon 
+      //  set += 1;
     }
 
     cout << endl
@@ -223,7 +219,7 @@ int Game::Drow_game()
     {
         for (j = 0; j < 5; j++)
         {
-            if (Tic[i][j] == 'X')
+            if (Tic[i][j] == 'X')  // check the place have 'x' of not 
                 count_1++;
             if (Tic[i][j] == 'O')
                 count_2++;
@@ -237,9 +233,7 @@ int Game::Drow_game()
 int Game::ComputerTurn()
 {
     int i, j, place, k, multi_1 = 1, value = 0;
-    cout << endl
-         << endl
-         << " player 2 : Computer Turn   :  ";
+    cout << endl<< endl<< " player 2 : Computer Turn   :  ";
     srand(time(NULL));
     for (i = 0; i < 5; i++)
     {
@@ -252,7 +246,7 @@ int Game::ComputerTurn()
     if (i == 5)
     {
     l3:
-        place = rand() % 25 + 1;
+        place = rand() % 25 + 1;  // Generate the random Number 
         k = 1;
         for (i = 0; i < 5; i++)
         {
@@ -264,7 +258,7 @@ int Game::ComputerTurn()
             }
         }
     l2:
-        if (help[i][j] == 1 || help[i][j] == 5)
+        if (help[i][j] == 1 || help[i][j] == 5) // Check place have one or not 
             goto l3;
         else
         {
@@ -279,15 +273,15 @@ l1:
     {
         if (help[i][i] != 1 && help[i][i] != 5)
         {
-            help[i][i] = 5;
+            help[i][i] = 5;  // replace the help[i][i] positon to 5
             multi_1 = 1;
             for (k = 0; k < 5; k++)
             {
-                multi_1 = multi_1 * help[k][k];
+                multi_1 = multi_1 * help[k][k]; 
             }
             if (multi_1 == 3125)
             {
-                Tic[i][i] = 'O';
+                Tic[i][i] = 'O'; 
                 return (0);
             }
             else if (multi_1 == 5)
@@ -297,7 +291,7 @@ l1:
             }
             else
             {
-                help[i][i] = 2;
+                help[i][i] = 2; // replace the help[i][i position to 2]
             }
         }
     }
@@ -370,7 +364,7 @@ l1:
             if (help[i][j] != 1 && help[i][j] != 5)
             {
                 multi_1 = 1;
-                help[i][j] = 5;
+                help[i][j] = 5; // replace the help[i][j] position to 5
                 for (k = 0; k < 5; k++)
                 {
                     multi_1 = multi_1 * help[k][j];
@@ -382,8 +376,6 @@ l1:
                 }
                 else if (multi_1 == 5)
                 {
-                    //       cout<<"Multi Value is "<<multi_1;
-                    // getch();
                     p = i;
                     q = j;
                     help[i][j] = 2;
@@ -409,7 +401,7 @@ l1:
     }
 
     //     by default kisi pr bhi value assign nhi hui then :
-    AssingByDefaultValue();
+    AssingByDefaultValue(); // call the function 
 }
 void Game::AssingByDefaultValue()
 {
@@ -470,9 +462,7 @@ label1:
     {
         if (flag == 1)
         {
-            cout << endl
-                 << endl
-                 << "Player 1 - Enter Marking Place(X):";
+            cout << endl<< endl << "Player 1 - Enter Marking Place(X):";
             cin.ignore();
             cin >> Marking_place;
             int i, j, k = 1;
@@ -498,8 +488,7 @@ label1:
                      << endl
                      << "Player 1 WON " << endl
                      << endl;
-                cout << "##################################################################"
-                     << " Press Enter ";
+                cout<<"##################################################################" << " Press Enter ";
                 return (0);
             }
             flag = 1 - flag;
@@ -508,9 +497,7 @@ label1:
         {
         label2:
             pattern();
-            cout << endl
-                 << endl
-                 << "Player  2 - Enter Marking Place(O): ";
+            cout << endl << endl << "Player  2 - Enter Marking Place(O): ";
             cin.ignore();
             cin >> Marking_place;
             int i, j, k = 1;
@@ -531,7 +518,7 @@ label1:
             pattern();
             if (Winner())
             {
-                pattern();
+                pattern();  // print the pattern 
                 cout << endl
                      << endl
                      << "Player 2 Won " << endl
@@ -851,12 +838,12 @@ int main()
 
 void setcurser(int row, int col)
 {
-    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);//The GetStdHandle() function gives us a mechanism for retrieving the standard input,
     int x_position = col;
     int y_position = row;
     COORD screen;
-    HANDLE hOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+    HANDLE Output = GetStdHandle(STD_OUTPUT_HANDLE);
     screen.X = x_position;
     screen.Y = y_position;
-    SetConsoleCursorPosition(hOutput, screen);
+    SetConsoleCursorPosition(Output, screen);
 }
